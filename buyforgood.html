@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <title>Payment Page</title>
+
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+body {
+    font-family: Poppins;
+    background-color: white;
+    color: #5CDA59;
+}
+.input {
+    height: 40px;
+    background-color: White;
+    border: none;
+    font-size: 16px;
+    border-bottom: 2px solid #5CDA59;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.bg {
+    /* background-color: rgb(133, 130, 126); */
+    border-radius: 10px;
+}
+
+.bord {
+    /* border: 2px solid rgb(83, 81, 81); */
+    border-radius: 4px;
+}
+
+#btn {
+    background-color: #5CDA59;
+    color: rgb(235, 221, 221);
+    /* border: 2px solid ; */
+    font-size: 1rem;
+    border-radius: 0px;
+}
+#btn:hover {
+    outline: none;
+}
+#btn:focus {
+    outline: none;
+
+}
+#text {
+    display:none;
+    color:#5CDA59;
+}
+
+.text{
+    display:none;
+    color:#5CDA59;   
+}
+
+.err{
+    display:none;
+    color:#5CDA59;   
+}
+
+@media only screen and (max-width: 800px) {
+    .input {
+        width: -webkit-fill-available;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <h4 class="text-center head m-4">Payment</h4>
+    <!-- header -->
+    <!-- icons starts here -->
+    <div class="icons">
+        <div class="row mr-0">
+            <div class="col-sm-6">
+                <h5 class="m-5 bord shadow-lg"><i class="fas fa-dollar-sign bg p-4 mr-4"></i>Cash before Delivery</h5>
+            </div>
+            <div class="col-sm-6 ">
+                <h5 class="m-5 bord shadow-lg"><i class="fas fa-arrows-alt-h bg p-4 mr-4"></i>100% Return</h5>
+            </div>
+        </div>
+
+        <div class="row mr-0">
+            <div class="col-sm-6">
+                <h5 class="m-5 bord shadow-lg"><i class="far fa-thumbs-up bg p-4 mr-4"></i>Quality Assured</h5>
+            </div>
+            <div class="col-sm-6 ">
+                <h5 class="m-5 bord shadow-lg"><i class="fas fa-stopwatch bg p-4 mr-4"></i>Delivery on time</h5>
+            </div>
+        </div>
+    </div>
+    <!-- icons end here -->
+    <!-- Checkout starts here -->
+    <form class="form">
+        <div class="row bord p-4 shadow-lg m-5">
+            <div class="col-sm-6">
+                <div class="col-sm-6 mt-2 row">
+                    <!-- <h5 class="my-auto">First Name :</h5> -->
+                    <input class="ml-3 name input" type="text" placeholder="First Name" required />
+                <small class="err"> Alphabets only</small>
+                </div>
+                <div class="col-sm-6 mt-2 row ">
+                    <!-- <h5 class="my-auto">Email :</h5> -->
+                    <input class="ml-3 input" type="email" placeholder="Email" required />
+                </div>
+                <div class="col-sm-6 mt-3 row ">
+                    <!-- <h5 class="my-auto">Address :</h5> -->
+                    <input class="ml-3 input" type="text" placeholder="Address" required />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6 mt-2 row">
+                    <!-- <h5 class="my-auto name my-auto">Last Name :</h5> -->
+                    <input class="ml-3 input" type="text" placeholder="Last Name" required />
+                </div>
+                <div class="col-sm-6 mt-2 row">
+                    <!-- <h5 class="my-auto my-auto">Password :</h5> -->
+                    <!-- <input class="ml-3 input caps" title="(4-8 characters)" type="password" minlength="4" maxlength="8"
+                        placeholder="Password" required /> -->
+                    <!-- <p id="text">Your Caps-Lock is on!</p> -->
+                </div>
+                <div class="col-sm-6 mt-3 row">
+                    <!-- <h5 class="my-auto my-auto">Phone Number :</h5> -->
+                    <input class="ml-3 validation input" type="tel" placeholder="Phone No." required />
+                    <small class="text">Invalid phone number</small>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Checkout ends here -->
+        <!-- Buy button -->
+        <div class="m-5 final text-center">
+            <button type="submit" id="btn" class="p-2 px-4 btn shadow-lg" onclick="validate()"><i class="fas fa-cart-arrow-down p-2"></i><a href="https://www.paypal.com/ng/home" style="color:white;text-decoration: none;">BUY</a></button>
+        </div>
+    </form>
+    <!-- Buy Button -->
+    <!-- script tags -->
+    <script>
+        // Get the input field
+let input = document.querySelector(".caps");
+
+// Get the warning text
+let text = document.getElementById("text");
+
+// When the user presses any key on the keyboard, run the function
+input.addEventListener("keyup", function (event) {
+
+    // If "caps lock" is pressed, display the warning text
+    if (event.getModifierState("CapsLock")) {
+        text.style.display = "block";
+    } else {
+        text.style.display = "none"
+    }
+});
+const phone = document.querySelector('.validation');
+const name = document.querySelector('.name');
+const err = document.querySelector('.err');  
+
+function validate() {
+        let regex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+        if (regex.test(phone.value)) {
+            console.log(phone.value);
+            return true;
+        } else {
+        const txt = document.querySelector('.text'); 
+        txt.style.display='block';      
+        }
+        let rgx =/[a-zA-Z]+/g;
+        if (rgx.test(name.value)) {
+            console.log(name.value);
+            return true;
+        } else {
+          err.style.display='block';     
+        }
+    }
+    </script>
+
+</body>
+
+</html>
